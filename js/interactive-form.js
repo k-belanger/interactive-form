@@ -16,14 +16,14 @@ jobRole.addEventListener("change", () => {
 });
 
 /**** T-Shirt Info Section ****/
-const themeSelectElm = document.getElementById('design');
-const colorSelectElm = document.getElementById('color');
+const themeSelect = document.getElementById('design');
+const colorSelect = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
 const selectColorOpt = document.querySelector('#color option[value="default"]');
 
 // disable color options until theme is selected
-if (themeSelectElm.value === "default") {
-    colorSelectElm.disabled = true;
+if (themeSelect.value === "default") {
+    colorSelect.disabled = true;
 }
 
 // function to show / hide color options based on shirt theme selected
@@ -43,15 +43,15 @@ const showColors = (value) => {
 }
 
 // determines what tshirt theme was selected
-themeSelectElm.addEventListener('change', () => {
-    if (themeSelectElm.value === "default") {
-        colorSelectElm.disabled = true;
+themeSelect.addEventListener('change', () => {
+    if (themeSelect.value === "default") {
+        colorSelect.disabled = true;
         selectColorOpt.selected = true;
-    } else if (themeSelectElm.value === "js puns") {
-        colorSelectElm.disabled = false;
+    } else if (themeSelect.value === "js puns") {
+        colorSelect.disabled = false;
         showColors("js puns"); 
-    } else if (themeSelectElm.value === "heart js") {
-        colorSelectElm.disabled = false;
+    } else if (themeSelect.value === "heart js") {
+        colorSelect.disabled = false;
         showColors("heart js");
     }
 });
