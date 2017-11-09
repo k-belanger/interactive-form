@@ -27,7 +27,7 @@ if (themeSelect.value === "default") {
 }
 
 // function to show / hide color options based on shirt theme selected
-const showColors = (value) => {
+const showColorOptions = (value) => {
     for (let i = 0; i < colorOptions.length; i++) {
         let option = colorOptions[i];
         option.style.display = "none";
@@ -49,10 +49,10 @@ themeSelect.addEventListener('change', () => {
         selectColorOpt.selected = true;
     } else if (themeSelect.value === "js puns") {
         colorSelect.disabled = false;
-        showColors("js puns"); 
+        showColorOptions("js puns"); 
     } else if (themeSelect.value === "heart js") {
         colorSelect.disabled = false;
-        showColors("heart js");
+        showColorOptions("heart js");
     }
 });
 
