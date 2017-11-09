@@ -1,7 +1,7 @@
-/**** Set Focus on the first text field ****/
+/* ------------- Set Focus on the first text field ------------- */
 document.getElementsByTagName('input')[0].focus();
 
-/**** Job Role Section ****/
+/* ------------- Job Role Section ------------- */
 const jobRole = document.getElementById('title');
 
 jobRole.addEventListener("change", () => {
@@ -15,7 +15,7 @@ jobRole.addEventListener("change", () => {
     }
 });
 
-/**** T-Shirt Info Section ****/
+/* ------------- T-Shirt Info Section ------------- */
 const themeSelect = document.getElementById('design');
 const colorSelect = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
@@ -55,3 +55,5 @@ themeSelect.addEventListener('change', () => {
         showColors("heart js");
     }
 });
+
+/* ------------- Register for Activities Section ------------- */
