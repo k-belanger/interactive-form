@@ -57,3 +57,66 @@ themeSelect.addEventListener('change', () => {
 });
 
 /* ------------- Register for Activities Section ------------- */
+const activities = document.querySelector('.activities');
+const workshops = document.querySelectorAll('.activities label');
+
+// calculate total cost functions
+let totalPrice = 0;
+const addPrice = (cost) => {
+    return totalPrice += cost;  
+}
+const subtractPrice = (cost) => {
+    return totalPrice -= cost;  
+}
+
+// create and show total cost in UI
+const displayTotal = document.createElement('p');
+displayTotal.innerText = "Total $" + totalPrice;
+activities.appendChild(displayTotal);
+
+
+// checked / un-checked function
+activities.addEventListener('change', (e) => {    
+    const labelText = e.target.parentNode.innerText;
+    
+     // gets the price of the workshop from the label text
+    const price = parseInt(labelText.split("$")[1]);
+
+    // gets the time the workshop takes place from the label text
+    const textArray = labelText.split(/[—,]+/);
+    let time = "";
+    if (textArray.length === 3 ) {
+        time = textArray[1];
+    } else {
+        time = null;
+    }
+   
+    // if checkbox is checked
+    if (e.target.checked === true) {
+        // if any workshops that takes place at the same time as the one checked
+        for (let i = 0; i < workshops.length; i++) { 
+            if (workshops[i].textContent.includes(time) && workshops[i].firstElementChild.checked === false) {
+                // disable it
+                workshops[i].firstElementChild.disabled = true;
+                workshops[i].style.color = "#ADCBD8";
+            }    
+        }
+
+        addPrice(price); // add price of checked item
+    
+    } else { 
+    // if checkbox is un-checked
+        subtractPrice(price); // subtract price of the un-checked item
+ 
+        // if any workshops that takes place at the same time as the one checked
+        for (let i = 0; i < workshops.length; i++) {
+            if (workshops[i].textContent.includes(time)) {
+                // enable it
+                workshops[i].firstElementChild.disabled = false;
+                workshops[i].style.color = "#000";
+            }    
+        }
+    }
+
+    displayTotal.innerText = "Total $" + totalPrice; // update total price of checked items in UI 
+});
