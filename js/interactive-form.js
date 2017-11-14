@@ -3,15 +3,22 @@ document.getElementsByTagName('input')[0].focus();
 
 /* ------------- Job Role Section ------------- */
 const jobRole = document.getElementById('title');
+const jobInput = document.getElementById('other-title');
+
+// hide other job title field by default
+jobInput.style.display = "none";
 
 jobRole.addEventListener("change", () => {
     if (jobRole.value === "other" ) {
-        const jobInput = document.createElement('input');
-        jobInput.id = "other-title";
-        jobInput.type = "text";
-        jobInput.placeholder = "Your Job Role";
-        jobRole.parentNode.appendChild(jobInput);
+        // const jobInput = document.createElement('input');
+        // jobInput.id = "other-title";
+        // jobInput.type = "text";
+        // jobInput.placeholder = "Your Job Role";
+        // jobRole.parentNode.appendChild(jobInput);
+        jobInput.style.display = "block";
         jobInput.focus();
+    } else {
+        jobInput.style.display = "none"; 
     }
 });
 
