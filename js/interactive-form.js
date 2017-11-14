@@ -128,8 +128,10 @@ const creditCardInfo = document.getElementById('credit-card');
 const paypalInfo = document.getElementById('paypal');
 const bitcoinInfo = document.getElementById('bitcoin');
 
-// hide all payment options by default
-creditCardInfo.style.display = "none";
+// select credit card info by default
+paymentType.value = "credit card";
+
+// hide paypal and bitcoin options by default
 paypalInfo.style.display = "none";
 bitcoin.style.display = "none";
 
@@ -150,6 +152,9 @@ paymentType.addEventListener('change', () => {
         paypalInfo.style.display = "none";
         bitcoin.style.display = "none";
         creditCardInfo.style.display = "block";
-        
+    } else {
+        paypalInfo.style.display = "none";
+        bitcoin.style.display = "none";
+        creditCardInfo.style.display = "none";
     }
 });
