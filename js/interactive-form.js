@@ -103,7 +103,7 @@ activities.addEventListener('change', (e) => {
         }
 
         addPrice(price); // add price of checked item
-    
+
     } else { 
     // if checkbox is un-checked
         subtractPrice(price); // subtract price of the un-checked item
@@ -119,4 +119,37 @@ activities.addEventListener('change', (e) => {
     }
 
     displayTotal.innerText = "Total $" + totalPrice; // update total price of checked items in UI 
+});
+
+
+/* ------------- Payment Section ------------- */
+const paymentType = document.getElementById('payment');
+const creditCardInfo = document.getElementById('credit-card');
+const paypalInfo = document.getElementById('paypal');
+const bitcoinInfo = document.getElementById('bitcoin');
+
+// hide all payment options by default
+creditCardInfo.style.display = "none";
+paypalInfo.style.display = "none";
+bitcoin.style.display = "none";
+
+// display/hide payment option according to option selected
+paymentType.addEventListener('change', () => {
+    if (paymentType.value === "paypal") {
+        // display paypal
+        creditCardInfo.style.display = "none";
+        bitcoin.style.display = "none";
+        paypalInfo.style.display = "block";
+    } else if (paymentType.value === "bitcoin") {
+        // display bitcoin
+        creditCardInfo.style.display = "none";
+        paypalInfo.style.display = "none";
+        bitcoin.style.display = "block";
+    } else if (paymentType.value === "credit card") {
+        // display credit card
+        paypalInfo.style.display = "none";
+        bitcoin.style.display = "none";
+        creditCardInfo.style.display = "block";
+        
+    }
 });
