@@ -91,12 +91,12 @@
         <label for="payment">I'm going to pay with:</label>
         <select id="payment" name="user_payment">
           <option value="select_method">Select Payment Method</option>
-          <option value="credit card">Credit Card</option>
+          <option value="creditcard">Credit Card</option>
           <option value="paypal">PayPal</option>
           <option value="bitcoin">Bitcoin</option>
         </select>
 
-        <div id="credit-card" class="credit-card">
+        <div id="creditcard" class="credit-card paymentInfo">
 
           <div class="col-6 col">
             <label for="cc-num">Card Number:</label>
@@ -138,11 +138,11 @@
           </select> 	                  	         
         </div>
 
-        <div id="paypal">
+        <div id="paypal" class="paymentInfo">
         	<p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>
         </div> 
 
-        <div id="bitcoin">
+        <div id="bitcoin" class="paymentInfo">
         	<p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
         </div>                  
 
