@@ -153,3 +153,97 @@ paymentType.addEventListener('change', (e) => {
         }
     }
 });
+
+/* ------------- Form Validation ------------- */
+const form = document.getElementById('form');
+const nameField = document.getElementById('name');
+const emailField = document.getElementById('mail');
+let email = emailField.value;
+const submitBtn = document.querySelector('button[type=submit]');
+const checkboxes = document.querySelectorAll('.activities input[type=checkbox]');
+const activitiesLegend = document.querySelector('.activities legend');
+
+const createErrorMsg = (elem, string) => {
+    const errorMsg = document.createElement('span');
+    errorMsg.className = "errorMsg";
+    errorMsg.innerText = "* " + string;
+    elem.classList.add("error");
+    elem.parentNode.insertBefore(errorMsg, elem);
+}
+
+const removeError = (elem) => {
+    elem.classList.remove("error");
+    elem.previousSibling.remove(); 
+}
+
+const validateEmail = (value) => {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (emailPattern.test(value)) {
+        if (emailField.classList.contains("error")) {
+            removeError(emailField);
+        }
+        return true;
+    } else {
+        if (!emailField.classList.contains("error")) {
+            createErrorMsg(emailField, "please enter a valid email");
+        }
+        return false;
+    }
+}
+
+const validateName = () => {
+    if (nameField.value === "" || nameField.value === " ") {
+        if (!nameField.classList.contains("error")) {   
+            createErrorMsg(nameField, "this field is required");
+        }
+        return false;
+    } else {
+        if (nameField.classList.contains("error")) {
+            removeError(nameField);
+        }
+        return true;   
+    }
+}
+
+const validateActivities = () => {
+    let checked = 0;
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked === true) {
+            checked++;
+        } 
+    }
+
+    if (checked > 0) {
+        if (activitiesLegend.classList.contains("error")) {
+            removeError(activitiesLegend);
+        }
+        return true;  
+    } else {
+        if (!activitiesLegend.classList.contains("error")) {
+            createErrorMsg(activitiesLegend, "Please select at least one activity.");
+        }
+        return false;
+    }
+
+}
+
+emailField.addEventListener('keypress', () => {
+    email = emailField.value;
+    const validEmail = validateEmail(email);
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    email = emailField.value;
+    const validEmail = validateEmail(email);
+    const validName = validateName();
+    const validActivities = validateActivities();
+    setTimeout(() => { 
+        if (validEmail && validName && validActivities) {
+            const successModal = document.createElement('div');
+            successModal.id = "successModal";
+            successModal.innerText = "Registration Successful!";
+            document.body.appendChild(successModal);
+        }
+    }, 250);
+});
