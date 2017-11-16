@@ -148,7 +148,7 @@ input:focus::-webkit-input-placeholder { color: transparent;}
 .activities .errorMsg {position:absolute; right:0; top:1em;}
 .activities .error {border-color:#5e97b0;}
 
-#successModal {font-size:28px; text-align:center; position:absolute; top:50%; left:50%; width:500px; padding:200px 0; margin:-250px 0 0 -250px; background-color:#fff; border:15px solid steelblue;}
+#successModal {font-size:28px; text-align:center; position:fixed; top:50%; left:50%; width:500px; padding:200px 0; margin:-250px 0 0 -250px; background-color:#fff; border:15px solid steelblue;}
 
 /* ================================= 
   Helper Classes
