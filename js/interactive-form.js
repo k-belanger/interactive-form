@@ -1,7 +1,12 @@
-/* ------------- Set Focus on the first text field ------------- */
+/* *********************************************
+------------- Set Focus on the first text field ------------- 
+********************************************** */
 document.getElementsByTagName('input')[0].focus();
 
-/* ------------- Job Role Section ------------- */
+
+/* *********************************************
+------------- Job Role Section ------------- 
+********************************************** */
 const jobRole = document.getElementById('title');
 const jobInput = document.getElementById('other-title');
 
@@ -17,7 +22,10 @@ jobRole.addEventListener("change", () => {
     }
 });
 
-/* ------------- T-Shirt Info Section ------------- */
+
+/* *********************************************
+------------- T-Shirt Info Section ------------- 
+********************************************** */
 const themeSelect = document.getElementById('design');
 const colorSelect = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
@@ -63,7 +71,10 @@ themeSelect.addEventListener('change', () => {
     }
 });
 
-/* ------------- Register for Activities Section ------------- */
+
+/* *********************************************
+------------- Register for Activities Section ------------- 
+/********************************************* */
 const activities = document.querySelector('.activities');
 const workshops = document.querySelectorAll('.activities label');
 
@@ -129,7 +140,9 @@ activities.addEventListener('change', (e) => {
 });
 
 
-/* ------------- Payment Section ------------- */
+/* **********************************************
+------------- Payment Section ------------- 
+********************************************** */
 const paymentType = document.getElementById('payment');
 const paymentInfo = document.querySelectorAll(".paymentInfo");
 
@@ -154,7 +167,10 @@ paymentType.addEventListener('change', (e) => {
     }
 });
 
-/* ------------- Form Validation ------------- */
+
+/* **********************************************
+------------- Form Validation ------------- 
+********************************************** */
 const form = document.getElementById('form');
 const nameField = document.getElementById('name');
 const emailField = document.getElementById('mail');
@@ -180,7 +196,7 @@ const removeError = (elem) => {
     elem.previousSibling.remove(); 
 }
 
-// validate Name Field
+// validate name field
 const validateName = () => {
     if (nameField.value === "" || nameField.value === " ") {
         if (!nameField.classList.contains("error")) {   
@@ -195,7 +211,7 @@ const validateName = () => {
     }
 }
 
-// Validate Email Field
+// validate email field
 const validateEmail = () => {
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (emailPattern.test(emailField.value)) {
@@ -234,7 +250,7 @@ const validateActivities = () => {
 
 }
 
-// Validate Credit Card Number
+// validate credit card number
 const validateCreditCard = () => {
     const ccInput = ccField.value.replace(/\s/g, '');
    
@@ -260,7 +276,7 @@ const validateCreditCard = () => {
     }
 }
 
-// Validate ZipCode
+// validate zipCode
 const validateZipcode = () => {
     if (zipField.value === "" || zipField.value === " ") {
         if (!zipField.classList.contains("error")) {
@@ -283,7 +299,7 @@ const validateZipcode = () => {
     }
 }
 
-// Validate CVV Code
+// validate cvv code
 const validateCVV = () => {
     if (cvvField.value === "" || cvvField.value === " ") {
         if (!cvvField.classList.contains("error")) {
@@ -306,12 +322,12 @@ const validateCVV = () => {
      }
  }
 
-// Validate Email as you Type
+// validate email as you type
 emailField.addEventListener('keypress', () => {
     const validEmail = validateEmail();
 });
 
-// Validate Form on Sumbit 
+// validate form on sumbit 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const validName = validateName();
