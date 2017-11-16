@@ -22,10 +22,12 @@ const themeSelect = document.getElementById('design');
 const colorSelect = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
 const selectColorOpt = document.querySelector('#color option[value="default"]');
+const colorLabel = document.querySelector('#colors-js-puns label');
 
 // disable color options until theme is selected
 if (themeSelect.value === "default") {
-    colorSelect.disabled = true;
+    colorSelect.style.visibility = "hidden";
+    colorLabel.style.visibility = "hidden";
 }
 
 // function to show / hide color options based on shirt theme selected
@@ -47,13 +49,16 @@ const showColorOptions = (value) => {
 // determines what tshirt theme was selected
 themeSelect.addEventListener('change', () => {
     if (themeSelect.value === "default") {
-        colorSelect.disabled = true;
+        colorLabel.style.visibility = "hidden";
+        colorSelect.style.visibility = "hidden";
         selectColorOpt.selected = true;
     } else if (themeSelect.value === "js puns") {
-        colorSelect.disabled = false;
+        colorLabel.style.visibility = "visible";
+        colorSelect.style.visibility = "visible";
         showColorOptions("js puns"); 
     } else if (themeSelect.value === "heart js") {
-        colorSelect.disabled = false;
+        colorLabel.style.visibility = "visible";
+        colorSelect.style.visibility = "visible";
         showColorOptions("heart js");
     }
 });
@@ -100,7 +105,7 @@ activities.addEventListener('change', (e) => {
             if (workshops[i].textContent.includes(time) && workshops[i].firstElementChild.checked === false) {
                 // disable it
                 workshops[i].firstElementChild.disabled = true;
-                workshops[i].style.color = "#ADCBD8";
+                workshops[i].style.opacity = "0.25";
             }    
         }
 
@@ -115,7 +120,7 @@ activities.addEventListener('change', (e) => {
             if (workshops[i].textContent.includes(time)) {
                 // enable it
                 workshops[i].firstElementChild.disabled = false;
-                workshops[i].style.color = "#000";
+                workshops[i].style.opacity = "1";
             }    
         }
     }
