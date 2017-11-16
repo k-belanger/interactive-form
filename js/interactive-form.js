@@ -158,11 +158,14 @@ paymentType.addEventListener('change', (e) => {
 const form = document.getElementById('form');
 const nameField = document.getElementById('name');
 const emailField = document.getElementById('mail');
-let email = emailField.value;
 const submitBtn = document.querySelector('button[type=submit]');
 const checkboxes = document.querySelectorAll('.activities input[type=checkbox]');
 const activitiesLegend = document.querySelector('.activities legend');
+const ccField = document.getElementById('cc-num');
+const zipField = document.getElementById('zip');
+const cvvField = document.getElementById('cvv');
 
+// create and add error message
 const createErrorMsg = (elem, string) => {
     const errorMsg = document.createElement('span');
     errorMsg.className = "errorMsg";
@@ -171,26 +174,13 @@ const createErrorMsg = (elem, string) => {
     elem.parentNode.insertBefore(errorMsg, elem);
 }
 
+// remove error message
 const removeError = (elem) => {
     elem.classList.remove("error");
     elem.previousSibling.remove(); 
 }
 
-const validateEmail = (value) => {
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (emailPattern.test(value)) {
-        if (emailField.classList.contains("error")) {
-            removeError(emailField);
-        }
-        return true;
-    } else {
-        if (!emailField.classList.contains("error")) {
-            createErrorMsg(emailField, "please enter a valid email");
-        }
-        return false;
-    }
-}
-
+// validate Name Field
 const validateName = () => {
     if (nameField.value === "" || nameField.value === " ") {
         if (!nameField.classList.contains("error")) {   
@@ -205,6 +195,23 @@ const validateName = () => {
     }
 }
 
+// Validate Email Field
+const validateEmail = () => {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (emailPattern.test(emailField.value)) {
+        if (emailField.classList.contains("error")) {
+            removeError(emailField);
+        }
+        return true;
+    } else {
+        if (!emailField.classList.contains("error")) {
+            createErrorMsg(emailField, "please enter a valid email");
+        }
+        return false;
+    }
+}
+
+// Validate Activities Checkboxes
 const validateActivities = () => {
     let checked = 0;
     for (let i = 0; i < checkboxes.length; i++) {
@@ -227,19 +234,95 @@ const validateActivities = () => {
 
 }
 
+// Validate Credic Card Number
+const validateCreditCard = () => {
+    const ccInput = ccField.value.replace(/\s/g, '');
+   
+    if (ccInput === "" || ccInput === " ") {
+        if (!ccField.classList.contains("error")) {
+            createErrorMsg(ccField, "this field is required");
+        } else {
+            ccField.previousElementSibling.innerText = '* this field is required';
+        }
+        return false;
+    } else if (ccInput.length < 10 || ccInput.length > 16 || isNaN(ccInput)) {
+        if (!ccField.classList.contains("error")) {
+            createErrorMsg(ccField, "enter a valid card number");
+        } else {
+            ccField.previousElementSibling.innerText = '* enter a valid card number';
+        }
+        return false;
+    } else {
+        if (ccField.classList.contains("error")) {
+            removeError(ccField);
+        }
+        return true;
+    }
+}
+
+// Validate ZipCode
+const validateZipcode = () => {
+   console.log(zipField.value.length);
+    if (zipField.value === "" || zipField.value === " ") {
+        if (!zipField.classList.contains("error")) {
+            createErrorMsg(zipField, "required");
+        } else {
+            zipField.previousElementSibling.innerText = '* required';
+        }
+        return false;
+    } else if (zipField.value.length !== 5 || isNaN(zipField.value)) {
+        if (!zipField.classList.contains("error")) {
+            createErrorMsg(zipField, "error");
+        } else {
+            zipField.previousElementSibling.innerText = '* error';
+        }
+    } else {
+        if (zipField.classList.contains("error")) {
+            removeError(zipField);
+        }
+        return true;
+    }
+}
+
+// Validate CVV Code
+const validateCVV = () => {
+    if (cvvField.value === "" || cvvField.value === " ") {
+        if (!cvvField.classList.contains("error")) {
+            createErrorMsg(cvvField, "required");
+        } else {
+            cvvField.previousElementSibling.innerText = '* required';
+        }
+        return false;
+    } else if (cvvField.value.length !== 3 || isNaN(cvvField.value)) {
+        if (!cvvField.classList.contains("error")) {
+            createErrorMsg(cvvField, "error");
+        } else {
+            cvvField.previousElementSibling.innerText = '* error';
+        }
+     } else {
+         if (cvvField.classList.contains("error")) {
+             removeError(cvvField);
+         }
+         return true;
+     }
+ }
+
+// Validate Email as you Type
 emailField.addEventListener('keypress', () => {
-    email = emailField.value;
-    const validEmail = validateEmail(email);
+    const validEmail = validateEmail();
 });
 
+// Validate Form on Sumbit 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    email = emailField.value;
-    const validEmail = validateEmail(email);
     const validName = validateName();
+    const validEmail = validateEmail();
     const validActivities = validateActivities();
+    const validCreditCard = validateCreditCard();
+    const validZipcode = validateZipcode();
+    const validCVV = validateCVV();
     setTimeout(() => { 
-        if (validEmail && validName && validActivities) {
+        if (validName && validEmail && validActivities && validCreditCard && validZipcode && validCVV) {
             const successModal = document.createElement('div');
             successModal.id = "successModal";
             successModal.innerText = "Registration Successful!";
