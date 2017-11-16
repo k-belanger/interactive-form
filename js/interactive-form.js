@@ -229,7 +229,7 @@ const validateActivities = () => {
 
 }
 
-// Validate Credic Card Number
+// Validate Credit Card Number
 const validateCreditCard = () => {
     const ccInput = ccField.value.replace(/\s/g, '');
    
@@ -257,7 +257,6 @@ const validateCreditCard = () => {
 
 // Validate ZipCode
 const validateZipcode = () => {
-   console.log(zipField.value.length);
     if (zipField.value === "" || zipField.value === " ") {
         if (!zipField.classList.contains("error")) {
             createErrorMsg(zipField, "required");
