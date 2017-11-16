@@ -10,11 +10,6 @@ jobInput.style.display = "none";
 
 jobRole.addEventListener("change", () => {
     if (jobRole.value === "other" ) {
-        // const jobInput = document.createElement('input');
-        // jobInput.id = "other-title";
-        // jobInput.type = "text";
-        // jobInput.placeholder = "Your Job Role";
-        // jobRole.parentNode.appendChild(jobInput);
         jobInput.style.display = "block";
         jobInput.focus();
     } else {
