@@ -121,6 +121,9 @@ button:hover {
 ::-webkit-input-placeholder {opacity:0.5;}
 input:focus::-webkit-input-placeholder { color: transparent;}
 
+::-moz-placeholder {opacity:0.5;}
+input:focus::-moz-placeholder { color: transparent;}
+
 /* ================================= 
   Page Styles
 ==================================== */
