@@ -221,9 +221,19 @@ const validateEmail = () => {
         return true;
     } else {
         if (!emailField.classList.contains("error")) {
-            createErrorMsg(emailField, "please enter an email address");
+            if (emailField.value == "" || emailField.value == " ") {
+                createErrorMsg(emailField, "please enter an email address");
+            } else {
+                createErrorMsg(emailField, "please enter a valid email");
+            }
+            
         } else {
-            emailField.previousElementSibling.innerText = '* please enter a valid email';
+            if (emailField.value == "" || emailField.value == " ") {
+                emailField.previousElementSibling.innerText = '* please enter an email address';
+            } else {
+                emailField.previousElementSibling.innerText = '* please enter a valid email';
+            }
+            
         }
         return false;
     }
@@ -326,6 +336,7 @@ const validateCVV = () => {
 
 // validate email as you type
 emailField.addEventListener('keypress', () => {
+    console.log("keypress");
     const validEmail = validateEmail();
 });
 
