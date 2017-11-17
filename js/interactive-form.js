@@ -221,7 +221,9 @@ const validateEmail = () => {
         return true;
     } else {
         if (!emailField.classList.contains("error")) {
-            createErrorMsg(emailField, "please enter a valid email");
+            createErrorMsg(emailField, "please enter an email address");
+        } else {
+            emailField.previousElementSibling.innerText = '* please enter a valid email';
         }
         return false;
     }
@@ -327,17 +329,31 @@ emailField.addEventListener('keypress', () => {
     const validEmail = validateEmail();
 });
 
+// validate payment
+const validatePayment = () => {
+    if (paymentType.value === "creditcard") {
+        const validCreditCard = validateCreditCard();
+        const validZipcode = validateZipcode();
+        const validCVV = validateCVV();
+        if (validCreditCard && validZipcode && validCVV) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return true;
+    }
+}
+
 // validate form on sumbit 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const validName = validateName();
     const validEmail = validateEmail();
     const validActivities = validateActivities();
-    const validCreditCard = validateCreditCard();
-    const validZipcode = validateZipcode();
-    const validCVV = validateCVV();
+    const validPayment = validatePayment();
     setTimeout(() => { 
-        if (validName && validEmail && validActivities && validCreditCard && validZipcode && validCVV) {
+        if (validName && validEmail && validActivities && validPayment) {
             const successModal = document.createElement('div');
             successModal.id = "successModal";
             successModal.innerText = "Registration Successful!";
