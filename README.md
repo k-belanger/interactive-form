@@ -3,6 +3,7 @@
 by Kimberly Belanger<br/>
 November 16, 2017
 
+View Project at : https://k-belanger.github.io/interactive-form
 
 ## Project Objective:
 Add interactivity and validation to a form using JavaScript. 
