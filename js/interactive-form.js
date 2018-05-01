@@ -367,8 +367,21 @@ form.addEventListener('submit', (e) => {
         if (validName && validEmail && validActivities && validPayment) {
             const successModal = document.createElement('div');
             successModal.id = "successModal";
-            successModal.innerText = "Registration Successful!";
+            successModal.innerHTML = "Thank you for registering <br/>" + nameField.value;
+            successModal.innerHTML += "<br/><br/>A confirmation has been sent to: <br/>" + emailField.value;
+
+            const closeBtn = document.createElement('span');
+            closeBtn.className = "close-btn";
+            closeBtn.innerHTML = "x";
+            closeBtn.onclick = closeSuccessModal;
+            
+            successModal.appendChild(closeBtn);
             document.body.appendChild(successModal);
         }
     }, 250);
 });
+
+// close modal on closeBtn click
+const closeSuccessModal = () => {
+    document.body.removeChild(successModal);
+}
